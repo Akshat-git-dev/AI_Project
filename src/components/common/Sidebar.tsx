@@ -74,6 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       group: 'Intelligence & Mastery',
       items: [
         { id: 'mastery_tracker', label: 'Concept Mastery (BKT)', icon: BrainCircuit },
+        { id: 'misconception_taxonomy', label: 'Misconception Taxonomy', icon: BrainCircuit, badge: 'Taxonomy' },
         { id: 'weak_topics', label: 'Weak Topics & Remediation', icon: AlertTriangle },
         { id: 'video_recommendations', label: 'Video Recommendations', icon: Lightbulb },
       ],
@@ -114,6 +115,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     {
       group: 'AI & Intelligence Insights',
       items: [
+        { id: 'misconception_taxonomy', label: 'Misconception Taxonomy', icon: BrainCircuit, badge: 'Taxonomy' },
         { id: 'grading_patterns', label: 'Grading Pattern (Random Forest)', icon: Cpu, badge: 'ML' },
         { id: 'reports_export', label: 'Reports & Export', icon: FileSpreadsheet },
         { id: 'dataset_management', label: 'Dataset Management', icon: Settings },

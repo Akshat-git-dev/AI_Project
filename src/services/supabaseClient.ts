@@ -3,17 +3,21 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+// Safe fallback URL prevents createClient from crashing if env vars are not set
+const validUrl = (supabaseUrl && supabaseUrl.startsWith('http'))
+  ? supabaseUrl
+  : 'https://placeholder-project.supabase.co';
+const validKey = supabaseAnonKey || 'placeholder-anon-key';
+
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error(
-    "❌ Missing Supabase environment variables. " +
-    "Make sure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in .env (local) " +
-    "and in Vercel → Settings → Environment Variables (deployed)."
+  console.info(
+    'ℹ️ Running with local browser StorageService (VITE_SUPABASE_URL not configured).'
   );
 }
 
-export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '', {
+export const supabase = createClient(validUrl, validKey, {
   auth: {
-    persistSession: false,   // no login system yet — avoid unnecessary warnings
+    persistSession: false,
     autoRefreshToken: false,
     detectSessionInUrl: false,
   },

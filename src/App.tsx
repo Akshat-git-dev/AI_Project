@@ -11,6 +11,7 @@ import { AuthService } from './services/authService';
 import { Navbar } from './components/common/Navbar';
 import { Sidebar } from './components/common/Sidebar';
 import { AuthView } from './components/auth/AuthView';
+import { MisconceptionTaxonomyView } from './components/common/MisconceptionTaxonomyView';
 
 // Student Components
 import { StudentDashboard } from './components/student/StudentDashboard';
@@ -40,7 +41,9 @@ import { TeacherApprovalWorkflowView } from './components/teacher/TeacherApprova
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(() => AuthService.getCurrentUser());
-  const [activeView, setActiveView] = useState<string>('dashboard');
+  const [activeView, setActiveView] = useState<string>(() => {
+    return currentUser?.role === 'teacher' ? 'teacher_dashboard' : 'student_dashboard';
+  });
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [activeExamId, setActiveExamId] = useState<string | null>(null);
   const [activeResultAttemptId, setActiveResultAttemptId] = useState<string | null>(null);
@@ -195,6 +198,13 @@ export default function App() {
                 />
               )}
 
+              {activeView === 'misconception_taxonomy' && (
+                <MisconceptionTaxonomyView
+                  user={currentUser}
+                  onNavigate={handleNavigate}
+                />
+              )}
+
               {activeView === 'weak_topics' && (
                 <WeakTopicsRemediation
                   user={currentUser}
@@ -277,6 +287,13 @@ export default function App() {
 
               {activeView === 'grading_patterns' && (
                 <GradingPatternInsightsView user={currentUser} />
+              )}
+
+              {activeView === 'misconception_taxonomy' && (
+                <MisconceptionTaxonomyView
+                  user={currentUser}
+                  onNavigate={handleNavigate}
+                />
               )}
 
               {activeView === 'teacher_grading_assistant' && (

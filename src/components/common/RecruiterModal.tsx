@@ -148,8 +148,8 @@ export const RecruiterModal: React.FC<RecruiterModalProps> = ({ isOpen, onClose 
                   <ul className="space-y-1.5 text-slate-400 leading-relaxed">
                     <li>• 100-Tree Random Forest grading regressor</li>
                     <li>• Bayesian Knowledge Tracing ($P(L_t)$)</li>
-                    <li>• A* Adaptive exam solver with Bloom's ratio</li>
-                    <li>• Automated misconception classifier</li>
+                    <li>• A* Adaptive exam solver with Bloom's ratio & ZPD corridor</li>
+                    <li>• Dedicated Misconception Taxonomy & live sandbox</li>
                     <li>• Curated high-yield video remediation</li>
                   </ul>
                 </div>
